@@ -1,32 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grofers Checkout</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 300px;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        #ans {
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
 
-<table border="1">
-    <tr>
-        <th class="item">Item</th>
-        <th>Price</th>
-    </tr>
-    <tr>
-        <td class="item">Milk</td>
-        <td class="prices">40</td>
-    </tr>
-    <tr>
-        <td class="item">Bread</td>
-        <td class="prices">30</td>
-    </tr>
-    <tr>
-        <td class="item">Eggs</td>
-        <td class="prices">60</td>
-    </tr>
-</table>
+    <table id="groceryTable">
+        <tr>
+            <th>Item</th>
+            <th>Price</th>
+        </tr>
 
-<script src="script.js"></script>
+        <tr>
+            <td class="item">Potato</td>
+            <td class="prices">20</td>
+        </tr>
+
+        <tr>
+            <td class="item">Tomato</td>
+            <td class="prices">30</td>
+        </tr>
+
+        <tr>
+            <td class="item">Onion</td>
+            <td class="prices">40</td>
+        </tr>
+
+        <tr>
+            <td class="item">Apple</td>
+            <td class="prices">50</td>
+        </tr>
+    </table>
+
+    <script>
+        // Select all price cells
+        let priceElements = document.querySelectorAll(".prices");
+
+        let total = 0;
+
+        // Calculate total
+        priceElements.forEach(function(price) {
+            total += Number(price.textContent);
+        });
+
+        // Create a new row
+        let row = document.createElement("tr");
+
+        // Create a single cell
+        let cell = document.createElement("td");
+        cell.colSpan = 2;
+        cell.id = "ans";
+        cell.textContent = total;
+
+        // Append cell to row and row to table
+        row.appendChild(cell);
+        document.getElementById("groceryTable").appendChild(row);
+    </script>
 
 </body>
 </html>
